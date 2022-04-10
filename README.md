@@ -27,3 +27,4 @@ $GALOIS_PATH/build/tools/graph-convert/graph-convert -edgelist2gr  ~/data/wiki-V
 ```
 ## Running
 Please run scripts in ./scripts for testing.
+# CoWalker
