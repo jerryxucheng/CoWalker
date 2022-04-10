@@ -1,23 +1,11 @@
-# Skywalker
+# CoWalker
 
-This is the repo for Skywalker, an Efficient Alias-method-based Graph Sampling and Random Walk on GPUs.
+This is the repo for Cowalker, an Efficient Alias-method-based Graph Sampling and Random Walk on GPUs.
 
-## Setup
-```
-git clone https://github.com/wpybtw/skywalker_artifact --recursive
-```
-
-Note that Cmake is not correctly setted yet. We use cmake to build glfags and then make. 
-```
-cd build
-cmake ..
-make -j
-cd ..
-make
 ```
 
 ## Dataset
-Skywalker uses [Galios](https://iss.oden.utexas.edu/?p=projects/galois) graph format (.gr) as the input. Other formats like Edgelist (form [SNAP](http://snap.stanford.edu/data/index.html)) or Matrix Market can be transformed into it with GALOIS' graph-convert tool. Compressed graphs like [Webgraph](http://law.di.unimi.it/datasets.php) need to be uncompressed first.
+Cowalker uses [Galios](https://iss.oden.utexas.edu/?p=projects/galois) graph format (.gr) as the input. Other formats like Edgelist (form [SNAP](http://snap.stanford.edu/data/index.html)) or Matrix Market can be transformed into it with GALOIS' graph-convert tool. Compressed graphs like [Webgraph](http://law.di.unimi.it/datasets.php) need to be uncompressed first.
 
 Here is an example:
 ```
