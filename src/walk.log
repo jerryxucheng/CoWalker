@@ -1,0 +1,31 @@
+-------------------------------------------------------online rw 4k 100. using 0-64 weight
+--------- /home/pywang/data/lj.w.gr ---------
+SamplingTime:	0.012216
+--------- /home/pywang/data/orkut.w.gr ---------
+SamplingTime:	0.005261
+--------- /home/pywang/data/uk-2005.w.gr ---------
+SamplingTime:	0.035791
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+SamplingTime:	0.698223
+--------- /home/pywang/data/sk-2005.w.gr ---------
+SamplingTime:	0.027409
+--------- /home/pywang/data/friendster.w.gr ---------
+SamplingTime:	0.078317
+
+-------------------------------------------------------offline rw |V| 100. using 0-64 weight
+--------- /home/pywang/data/lj.w.gr ---------
+Construct table time:	0.033600
+SamplingTime:	0.190325
+--------- /home/pywang/data/orkut.w.gr ---------
+Construct table time:	0.039626
+SamplingTime:	0.009996
+--------- /home/pywang/data/uk-2005.w.gr ---------
+Construct table time:	0.716847
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+Construct table time:	2.972917
+SamplingTime:	157.260748
+--------- /home/pywang/data/sk-2005.w.gr ---------
+Construct table time:	4.241140
+SamplingTime:	26.553319
+--------- /home/pywang/data/friendster.w.gr ---------
+Construct table time:	4.979431

@@ -262,7 +262,7 @@ float OnlineWalkGMem(Walker &sampler) {
   cudaDeviceProp prop;
   cudaGetDevice(&device);
   cudaGetDeviceProperties(&prop, device);
-  int n_sm = prop.multiProcessorCount;
+  int n_sm = FLAGS_sm;
 
   Walker *sampler_ptr;
   cudaMalloc(&sampler_ptr, sizeof(Walker));
@@ -274,7 +274,7 @@ float OnlineWalkGMem(Walker &sampler) {
   init_array(sampler.result.length, sampler.result.size,
              sampler.result.hop_num);
   // allocate global buffer
-  int block_num = n_sm * FLAGS_m;
+  int block_num = n_sm ;
   int gbuff_size = sampler.ggraph.MaxDegree;
   int buffer_num = block_num * WARP_PER_BLK;
   LOG("alllocate GMEM buffer %d MB, buffer_num %d\n",
@@ -315,6 +315,7 @@ float OnlineWalkGMem(Walker &sampler) {
     else
       OnlineWalkKernel<<<block_num, BLOCK_SIZE, 0, 0>>>(sampler_ptr,
                                                         vector_packs, tp_d);
+      cout<<"block num"<<block_num<<endl;
   }
 
   CUDA_RT_CALL(cudaDeviceSynchronize());

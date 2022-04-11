@@ -119,13 +119,17 @@ __global__ void PrintTable(Sampler *sampler) {
 float ConstructTable(Sampler &sampler, uint ngpu, uint index) {
   LOG("%s\n", __FUNCTION__);
   int device;
+  double start,end;
   cudaDeviceProp prop;
   cudaGetDevice(&device);
   cudaGetDeviceProperties(&prop, device);
   int n_sm = prop.multiProcessorCount;
-
+  start=wtime();
   sampler.AllocateAliasTablePartial(ngpu, index);
-
+  if (FLAGS_load==0){
+  end=wtime();
+  LOG("alllocate time: %f \n",
+      end-start);
   // paster(sizeof(alias_table_constructor_shmem<uint, thread_block_tile<32>,
   //                                             BufferType::SHMEM>));
   // paster(sizeof(
@@ -140,7 +144,8 @@ float ConstructTable(Sampler &sampler, uint ngpu, uint index) {
   init_kernel_ptr<<<1, 32, 0, 0>>>(sampler_ptr,true);
 
   // allocate global buffer
-  int block_num = n_sm * FLAGS_m;
+  // int block_num = n_sm * FLAGS_m;
+  int block_num = FLAGS_sm;
   int gbuff_size = sampler.ggraph.MaxDegree;
 
   LOG("alllocate GMEM buffer %d MB\n",
@@ -171,9 +176,11 @@ float ConstructTable(Sampler &sampler, uint ngpu, uint index) {
   // CUDA_RT_CALL(cudaPeekAtLastError());
   total_time = wtime() - start_time;
   LOG("Construct table time:\t%.6f\n", total_time);
+  LOG("alias table size: %d MB\n", (sampler.ggraph.edge_num*(sizeof(uint)+sizeof(float))+sampler.ggraph.vtx_num*sizeof(char))/1024/1024);
   // paster(FLAGS_hmgraph);
   if ((FLAGS_weight || FLAGS_randomweight) && (!FLAGS_hmgraph)) {
     CUDA_RT_CALL(cudaFree(sampler.ggraph.adjwgt));
   }
   return total_time;
+  }
 }

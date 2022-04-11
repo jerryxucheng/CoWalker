@@ -251,7 +251,7 @@ static __global__ void sample_kernel_second(Sampler_new *sampler,
             candidate = col;
           else
             candidate = alias[col];
-          *result.GetDataPtr(idx_i, current_itr + 1, i) =
+            *result.GetDataPtr(idx_i, current_itr + 1, i) =
               graph->getOutNode(src_id, candidate);
         }
       }
@@ -291,6 +291,7 @@ float OfflineSample(Sampler_new &sampler) {
   sample_kernel_second<16>
       <<<sampler.result.size * 16 / BLOCK_SIZE + 1, BLOCK_SIZE, 0, 0>>>(
           sampler_ptr, 1);
+  printf("number of blocks: %d \n",sampler.result.size * 16 / BLOCK_SIZE + 1 );
   CUDA_RT_CALL(cudaDeviceSynchronize());
   // CUDA_RT_CALL(cudaPeekAtLastError());
   total_time = wtime() - start_time;
@@ -304,3 +305,65 @@ float OfflineSample(Sampler_new &sampler) {
   CUDA_RT_CALL(cudaDeviceSynchronize());
   return total_time;
 }
+
+
+
+
+// float OfflineSample(Sampler_new &sampler,Sampler_new &sampler2) {
+//   LOG("%s\n", __FUNCTION__);
+//   int device;
+//   cudaDeviceProp prop;
+//   cudaGetDevice(&device);
+//   cudaGetDeviceProperties(&prop, device);
+//   int n_sm = prop.multiProcessorCount;
+//   cudaStream_t stream1, stream2;
+//   cudaStreamCreate(&stream1);
+//   cudaStreamCreate(&stream2);
+//   Sampler_new *sampler_ptr;
+//   cudaMalloc(&sampler_ptr, sizeof(Sampler_new));
+//   CUDA_RT_CALL(cudaMemcpyAsync(sampler_ptr, &sampler, sizeof(Sampler_new), cudaMemcpyHostToDevice,stream1));
+  
+
+//   Sampler_new *sampler_ptr2;
+//   cudaMalloc(&sampler_ptr2, sizeof(Sampler_new));
+//   CUDA_RT_CALL(cudaMemcpyAsync(sampler_ptr2, &sampler2, sizeof(Sampler_new), cudaMemcpyHostToDevice,stream2));
+
+
+//   double start_time, total_time;
+//   //   init_kernel_ptr<<<1, 32, 0, 0>>>(sampler_ptr, true);
+
+//   // allocate global buffer
+//   int block_num = n_sm * FLAGS_m;
+  
+//   CUDA_RT_CALL(cudaDeviceSynchronize());
+//   CUDA_RT_CALL(cudaPeekAtLastError());
+//   start_time = wtime();
+//   CUcontext ctx;
+
+//   sample_kernel_first<<<sampler.result.size / BLOCK_SIZE + 1, BLOCK_SIZE, 0,
+//                         stream1>>>(sampler_ptr, 0);
+//   sample_kernel_second<16>
+//       <<<sampler.result.size * 16 / BLOCK_SIZE + 1, BLOCK_SIZE, 0, stream1>>>(
+//           sampler_ptr, 1);
+  
+//   sample_kernel_first<<<sampler.result.size / BLOCK_SIZE + 1, BLOCK_SIZE, 0,
+//                         stream2>>>(sampler_ptr2, 0);
+//   sample_kernel_second<16>
+//       <<<sampler.result.size * 16 / BLOCK_SIZE + 1, BLOCK_SIZE, 0, stream2>>>(
+//           sampler_ptr2, 1);
+
+
+//   CUDA_RT_CALL(cudaDeviceSynchronize());
+//   // CUDA_RT_CALL(cudaPeekAtLastError());
+//   total_time = wtime() - start_time;
+//   LOG("Device %d sampling time:\t%.2f ms ratio:\t %.1f MSEPS\n",
+//       omp_get_thread_num(), total_time * 1000,
+//       static_cast<float>(sampler.result.GetSampledNumber() / total_time /
+//                          1000000));
+//   sampler.sampled_edges = sampler.result.GetSampledNumber();
+//   LOG("sampled_edges %d\n", sampler.sampled_edges);
+//   if (FLAGS_printresult) print_result<<<1, 32, 0, 0>>>(sampler_ptr);
+//   CUDA_RT_CALL(cudaDeviceSynchronize());
+//   return total_time;
+
+// }

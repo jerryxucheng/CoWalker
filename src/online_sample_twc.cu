@@ -228,7 +228,7 @@ float OnlineGBSampleTWC(Sampler &sampler) {
   CUDA_RT_CALL(cudaMemcpy(vector_packs, vector_pack_h,
                           sizeof(Vector_pack<uint>) * block_num,
                           cudaMemcpyHostToDevice));
-
+  
   //  Global_buffer
   CUDA_RT_CALL(cudaDeviceSynchronize());
   start_time = wtime();
@@ -236,7 +236,7 @@ float OnlineGBSampleTWC(Sampler &sampler) {
     sample_kernel<<<1, BLOCK_SIZE, 0, 0>>>(sampler_ptr, vector_packs);
   else
     sample_kernel<<<block_num, BLOCK_SIZE, 0, 0>>>(sampler_ptr, vector_packs);
-
+  
   CUDA_RT_CALL(cudaDeviceSynchronize());
   // CUDA_RT_CALL(cudaPeekAtLastError());
   total_time = wtime() - start_time;

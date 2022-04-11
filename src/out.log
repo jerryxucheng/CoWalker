@@ -1,0 +1,36 @@
+\n-------------------------------------------------------online sample 4k 2,2. using 0-64 weight
+--------- /home/pywang/data/lj.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.006724
+--------- /home/pywang/data/orkut.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.004938
+--------- /home/pywang/data/uk-2005.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.035487
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+OnlineGBSample
+--------- /home/pywang/data/sk-2005.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.018298
+--------- /home/pywang/data/friendster.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.065085
+\n-------------------------------------------------------online rw 4k 100. using 0-64 weight
+--------- /home/pywang/data/lj.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.011158
+--------- /home/pywang/data/orkut.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.005352
+--------- /home/pywang/data/uk-2005.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.037528
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+OnlineGBSample
+--------- /home/pywang/data/sk-2005.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.028013
+--------- /home/pywang/data/friendster.w.gr ---------
+OnlineGBSample
+SamplingTime:	0.079774

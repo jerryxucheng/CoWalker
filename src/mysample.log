@@ -1,0 +1,39 @@
+-------------------------------------------------------online sage 4k 25,10. using 0-64 weight
+--------- /home/pywang/data/lj.w.gr ---------
+SamplingTime:	0.039646
+--------- /home/pywang/data/orkut.w.gr ---------
+SamplingTime:	0.060702
+--------- /home/pywang/data/uk-2005.w.gr ---------
+SamplingTime:	0.047191
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+SamplingTime:	0.341093
+--------- /home/pywang/data/sk-2005.w.gr ---------
+SamplingTime:	0.026165
+--------- /home/pywang/data/friendster.w.gr ---------
+SamplingTime:	0.097405
+-------------------------------------------------------online sample 4k 2,2. using 0-64 weight
+--------- /home/pywang/data/lj.w.gr ---------
+SamplingTime:	0.017795
+--------- /home/pywang/data/orkut.w.gr ---------
+SamplingTime:	0.022059
+--------- /home/pywang/data/uk-2005.w.gr ---------
+SamplingTime:	0.037966
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+SamplingTime:	0.171915
+--------- /home/pywang/data/sk-2005.w.gr ---------
+SamplingTime:	0.021705
+--------- /home/pywang/data/friendster.w.gr ---------
+SamplingTime:	0.069362
+-------------------------------------------------------online sample 4k 2,2. using degree
+--------- /home/pywang/data/lj.w.gr ---------
+SamplingTime:	0.002094
+--------- /home/pywang/data/orkut.w.gr ---------
+SamplingTime:	0.003505
+--------- /home/pywang/data/uk-2005.w.gr ---------
+SamplingTime:	0.001324
+--------- /home/pywang/data/twitter-2010.w.gr ---------
+SamplingTime:	1.424660
+--------- /home/pywang/data/sk-2005.w.gr ---------
+SamplingTime:	0.001623
+--------- /home/pywang/data/friendster.w.gr ---------
+SamplingTime:	0.001627
