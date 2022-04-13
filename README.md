@@ -1,6 +1,6 @@
 # CoWalker
 
-This is the repo for Cowalker, a high-throughput GPU random walk framework tailored for concurrent random walk queries. 
+This is the repo for Cowalker, a high-throughput GPU random walk framework tailored for concurrent random walk queries. Basically, it's an extention of Skywalker, our previous Alias-method-based Graph Sampling and Random Walk framework on GPUs.
 
 
 ## Introduction
@@ -23,4 +23,4 @@ $GALOIS_PATH/build/tools/graph-convert/graph-convert -edgelist2gr  ~/data/wiki-V
 
 ## Running
 Please run scripts in ./scripts for testing.
-# CoWalker
+
