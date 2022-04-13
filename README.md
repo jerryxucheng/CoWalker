@@ -1,7 +1,6 @@
 # CoWalker
 
-This is the repo for Cowalker, an Efficient Alias-method-based Graph Sampling and Random Walk on GPUs.
-
+This is the repo for Cowalker, a high-throughput GPU random walk framework tailored for concurrent random walk queries. CoWalker introduces a multi-level concurrent execution model and a multi-dimensional scheduler to allow concurrent random walk tasks to efficiently share GPU resources with low overhead. It is able to reduce stalled GPU cores by reorganizing memory access pattern, which leads to higher throughput.
 ```
 
 ## Dataset
