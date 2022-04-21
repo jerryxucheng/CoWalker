@@ -27,4 +27,4 @@ Please run scripts in ./scripts for testing.
 ## Container
 We have provided a dockerfile with already built executable file for easy evaluation. We created the docker container from nvidia cuda image. Cowalker is located in /home/Cowalker, while several small datasets have been placed in /home/data. To generate the complete result, users may download and preprocess the datasets from the reference in our paper. 
 The container link is：
-
+https://pan.baidu.com/s/1MRaWx_L8Gb1x4pEuTPBBEg, and the password is v2l6.
