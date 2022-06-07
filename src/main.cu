@@ -405,16 +405,19 @@ int main(int argc, char *argv[]) {
       }
    //   FLAGS_load = 0;
       FLAGS_built = 0;
-      //  FLAGS_gmgraph=1;
+      // FLAGS_gmgraph=1;
+      // FLAGS_umgraph=0;
       //  FLAGS_gmgraph=0;
       // FLAGS_hmgraph=1;
       // FLAGS_umgraph=1;
       if (FLAGS_concurrent || FLAGS_mix || FLAGS_cnode && !FLAGS_samegraph) {
+   
         ggraphs2[dev_id] = gpu_graph(ginst2, dev_id);
         samplers2[dev_id] = Sampler(ggraphs2[dev_id], dev_id);
         //   ggraphs3[dev_id]= gpu_graph(ginst3,dev_id);
         //    samplers3[dev_id] = Sampler(ggraphs3[dev_id], dev_id);
       }
+      
       if (FLAGS_samegraph) {
         ggraphs2[dev_id] = gpu_graph(ginst2, ggraphs[dev_id], dev_id);
         cout << "pointer:" << ggraphs[dev_id].xadj << endl;
@@ -463,6 +466,9 @@ int main(int argc, char *argv[]) {
             time[dev_id] = OnlineWalkGMem(walker);
           } else {
             if (FLAGS_cnode == 0 && FLAGS_mix == 0) {
+              string s;
+              std::getline(std::cin, s);
+              cout<<"got "<<s<<endl;
               time[dev_id] = OnlineWalkShMem(walker);
 
             } else {
@@ -481,7 +487,7 @@ int main(int argc, char *argv[]) {
                 time2[dev_id] =
                     ConstructTable(samplers2[dev_id], dev_num, dev_id);
                 Walker walker2(samplers2[dev_id]);
-                walker2.SetSeed(local_sample_size * 10, Depth + 1, dev_num,
+                walker2.SetSeed(local_sample_size * 50, Depth + 1, dev_num,
                                 dev_id);
                 // Mixwalk(walker, walker2);
                 start = wtime();
@@ -522,7 +528,6 @@ int main(int argc, char *argv[]) {
         FLAGS_load=0;
         //        samplers[dev_id].InitFullForConstruction(dev_num, dev_id);
         if (FLAGS_concurrent) {
-          cout<<"concurrent1"<<endl;
         //  FLAGS_umtable = 0;
           samplers2[dev_id].InitFullForConstruction(dev_num, dev_id);
           //        samplers3[dev_id].InitFullForConstruction(dev_num, dev_id);
@@ -532,7 +537,6 @@ int main(int argc, char *argv[]) {
           //       dev_id);
           //        FLAGS_umtable=1;
           if (FLAGS_concurrent) {
-             cout<<"concurrent2"<<endl;
             time2[dev_id] = ConstructTable(samplers2[dev_id], dev_num, dev_id);
             //        time3[dev_id]= ConstructTable(samplers3[dev_id], dev_num,
             //        dev_id);
@@ -719,6 +723,12 @@ int main(int argc, char *argv[]) {
               cout << "include memory cpy:" << end - start << endl;
             }
           } else {
+            cout<<"Ready"<<endl;
+            //system("read -p 'Press Enter to continue...' var");
+           // cin.get();
+            // string s;
+            // std::getline(std::cin, s);
+            // cout<<"got "<<s<<endl;
             start = wtime();
             time[dev_id] = OfflineWalk(walker);
             end = wtime();
@@ -764,18 +774,18 @@ int main(int argc, char *argv[]) {
     }
     if (FLAGS_s) break;
   }
-  if (!FLAGS_ol && FLAGS_bias)
-    for (size_t i = 0; i < FLAGS_ngpu; i++) {
-      printf("%0.2f\t", table_times[i]);
-    }
-  printf("\n");
-  for (size_t i = 0; i < FLAGS_ngpu; i++) {
-    printf("%0.2f\t", times[i]);
-  }
-  printf("\n");
-  for (size_t i = 0; i < FLAGS_ngpu; i++) {
-    printf("%0.2f\t", tp[i]);
-  }
-  printf("\n");
+  // if (!FLAGS_ol && FLAGS_bias)
+  //   for (size_t i = 0; i < FLAGS_ngpu; i++) {
+  //     printf("%0.2f\t", table_times[i]);
+  //   }
+  // printf("\n");
+  // for (size_t i = 0; i < FLAGS_ngpu; i++) {
+  //   printf("%0.2f\t", times[i]);
+  // }
+  // printf("\n");
+  // for (size_t i = 0; i < FLAGS_ngpu; i++) {
+  //   printf("%0.2f\t", tp[i]);
+  // }
+  // printf("\n");
   return 0;
 }

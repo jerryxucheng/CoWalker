@@ -6,7 +6,7 @@
  * @FilePath: /sampling/src/offline_walk.cu
  */
 #include "app.cuh"
-#include </usr/local/cuda-11.1/targets/x86_64-linux/include/nvml.h>
+#include </usr/local/cuda-11.6/targets/x86_64-linux/include/nvml.h>
 #include "online_walk.cuh"
 
 __global__ void sample_kernel_static_buffer(Walker *walker) {
@@ -222,7 +222,7 @@ float OfflineWalk(Walker &walker) {
     // result=nvmlDeviceGetPowerUsage(device, &p1);
     // // nvmlDeviceSetPowerManagementLimit(device, 1000*p1);
     // cout<<"power: "<< p1<<endl; 
-    sample_kernel<<<FLAGS_sm, BLOCK_SIZE, 0, 0>>>(sampler_ptr);
+    sample_kernel<<<FLAGS_sm*16, BLOCK_SIZE, 0, 0>>>(sampler_ptr);
     // result=nvmlDeviceGetPowerUsage(device, &p2);
     // // nvmlDeviceSetPowerManagementLimit(device, 1000*p1);
     // cout<<"power: "<< p2<<endl; 
@@ -295,10 +295,10 @@ float OfflineWalk2(Walker &walker, Walker &walker2) {
   }
   else{  
     if (FLAGS_k1){
-    sample_kernel<<<FLAGS_sm, BLOCK_SIZE, 0, stream1>>>(sampler_ptr);
+    sample_kernel<<<FLAGS_sm*4, BLOCK_SIZE, 0, stream1>>>(sampler_ptr);
     }
     else if (FLAGS_k2){
-    sample_kernel<<<FLAGS_sm, BLOCK_SIZE, 0, stream2>>>(sampler_ptr2);
+    sample_kernel<<<FLAGS_sm*4, BLOCK_SIZE, 0, stream2>>>(sampler_ptr2);
 
     }
     else{
